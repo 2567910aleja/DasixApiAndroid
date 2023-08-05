@@ -9,4 +9,9 @@ public class Api {
         String respuesta=urlApi+"iniciosesion/";
         return respuesta;
     }
+    static  public  String urlRegistrar(Context context){
+    String respuesta=urlApi+"registrar/";
+        return respuesta;
+    }
+
 }

@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/Rusuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="277dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="Ingrese Usuario"
         android:inputType="textPersonName"
@@ -36,8 +36,8 @@
 
     <EditText
         android:id="@+id/Rclave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="279dp"
+        android:layout_height="41dp"
         android:ems="10"
         android:hint="Ingrese Contraseña"
         android:inputType="textPassword"
@@ -56,7 +56,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643" />
 
     <Button
         android:id="@+id/cancelar"
@@ -67,6 +68,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.804" />
+
+    <EditText
+        android:id="@+id/confirmacion"
+        android:layout_width="282dp"
+        android:layout_height="56dp"
+        android:ems="10"
+        android:hint="Confirmacion de Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.475" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
