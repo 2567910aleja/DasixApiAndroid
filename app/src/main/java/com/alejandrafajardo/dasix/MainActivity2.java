@@ -1,28 +1,27 @@
 package com.alejandrafajardo.dasix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.alejandrafajardo.dasix.Api.Api;
-import com.google.android.material.snackbar.Snackbar;
+import com.alejandrafajardo.dasix.adaptadores.AdaptadorUsuarios;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.alejandrafajardo.dasix.databinding.ActivityMain2Binding;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -38,6 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
     Button volverinicio;
     TextView carga;
     Spinner selUsuario;
+    RecyclerView recyUsu;
     SharedPreferences session;
     SharedPreferences.Editor editorSesion;
 
@@ -50,6 +50,8 @@ public class MainActivity2 extends AppCompatActivity {
         volverinicio=findViewById(R.id.volverinicio);
         carga=findViewById(R.id.carga);
         selUsuario=findViewById(R.id.selUsuarios);
+        recyUsu=findViewById(R.id.recyUsu);
+        recyUsu.setLayoutManager(new LinearLayoutManager(this));
         session = getSharedPreferences("session", MainActivity2.MODE_PRIVATE);
         editorSesion = session.edit();
 
@@ -138,6 +140,19 @@ public class MainActivity2 extends AppCompatActivity {
             //crear adaptador
             ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,tiposArray);
             selUsuario.setAdapter(adaptador);
+            selUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    String seleccionado=adapterView.getItemAtPosition(i).toString();
+                    cargarRecycler(seleccionado);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    //no se hace nada, porque si
+                }
+            });
+
 
         }catch (JSONException e){
             String error = respuesta.getString("error");
@@ -145,5 +160,50 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void cargarRecycler(String seleccionado) {
+        if (!seleccionado.equals("Seleccione")){
+                carga.setText("Cargando...");
+                RequestParams parametros = new RequestParams();
+                if (seleccionado.equals("usuario")){
+                    parametros.put("accion", "cargarUsuarios");
+
+                }else{
+                    parametros.put("accion", "cargarClientes");
+                }
+                parametros.put("session_id", session.getString("session_id",""));
+                AsyncHttpClient httpClient = new AsyncHttpClient();
+                httpClient.post(Api.urlCargarDatos(MainActivity2.this), parametros, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        String res=new String(responseBody);
+                        Log.e("datosUsuario",res);
+                        try {
+                            JSONObject usuariosObj=new JSONObject(res);
+                            JSONArray jsonArray;
+
+                            //creamos adaptador
+                            if (seleccionado.equals("usuario")){
+                                jsonArray=usuariosObj.getJSONArray("usuarios");
+                                AdaptadorUsuarios adapterUsuarios = new AdaptadorUsuarios(MainActivity2.this,jsonArray);
+                                recyUsu.setAdapter(adapterUsuarios);
+                            }
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                        carga.setText("");
+
+                    }
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Toast.makeText(MainActivity2.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+                        carga.setText("");
+                    }
+                });
+
+        }
     }
 }
