@@ -7,17 +7,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/border_background_redo"
+        android:layout_marginVertical="10dp">
 
         <ImageView
-            android:id="@+id/ivImagen"
+            android:id="@+id/ivImagenCli"
             android:layout_width="100dp"
             android:layout_height="115dp"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"
             android:layout_margin="10dp"
-            android:scaleType="fitCenter"/>
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="318dp"
@@ -26,13 +32,12 @@
             android:paddingVertical="30dp">
 
             <TextView
-                android:id="@+id/tvNombre"
+                android:id="@+id/tvNombreCli"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
-                android:text="TextView"
-                android:textSize="16sp"
                 android:layout_margin="15dp"
-                />
+                android:text="TextView"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>

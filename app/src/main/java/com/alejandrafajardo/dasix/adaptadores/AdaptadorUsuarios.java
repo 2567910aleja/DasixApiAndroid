@@ -1,7 +1,6 @@
 package com.alejandrafajardo.dasix.adaptadores;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alejandrafajardo.dasix.Api.Api;
 import com.alejandrafajardo.dasix.R;
 import com.squareup.picasso.Picasso;
 
@@ -62,8 +60,8 @@ public class AdaptadorUsuarios extends RecyclerView.Adapter<AdaptadorUsuarios.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // Relacion de los atributos con la vista
-            tvNombre=itemView.findViewById(R.id.tvNombre);
-            ivImagen=itemView.findViewById(R.id.ivImagen);
+            tvNombre=itemView.findViewById(R.id.tvNombreCli);
+            ivImagen=itemView.findViewById(R.id.ivImagenCli);
         }
     }
 }

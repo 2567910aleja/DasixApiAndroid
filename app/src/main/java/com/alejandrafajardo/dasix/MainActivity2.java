@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.alejandrafajardo.dasix.Api.Api;
+import com.alejandrafajardo.dasix.adaptadores.AdaptadorClientes;
 import com.alejandrafajardo.dasix.adaptadores.AdaptadorUsuarios;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -189,6 +190,10 @@ public class MainActivity2 extends AppCompatActivity {
                                 jsonArray=usuariosObj.getJSONArray("usuarios");
                                 AdaptadorUsuarios adapterUsuarios = new AdaptadorUsuarios(MainActivity2.this,jsonArray);
                                 recyUsu.setAdapter(adapterUsuarios);
+                            } else if (seleccionado.equals("cliente")) {
+                                jsonArray=usuariosObj.getJSONArray("clientes");
+                                AdaptadorClientes adapterClientes = new AdaptadorClientes(MainActivity2.this,jsonArray);
+                                recyUsu.setAdapter(adapterClientes);
                             }
 
                         } catch (JSONException e) {
