@@ -93,7 +93,18 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
+                <Button
+                    android:id="@+id/btnModificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modificar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.643"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -150,6 +161,19 @@
                         android:textSize="24sp" />
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#DF0404"
+                    android:text="Eliminar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.643" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

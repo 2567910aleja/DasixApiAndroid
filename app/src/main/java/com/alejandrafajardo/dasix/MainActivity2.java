@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    Button volverinicio;
+    ImageButton volverinicio;
     TextView carga;
     Spinner selUsuario;
     RecyclerView recyUsu;

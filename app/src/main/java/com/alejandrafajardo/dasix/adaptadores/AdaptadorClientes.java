@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,12 +35,15 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
     public void onBindViewHolder(@NonNull AdaptadorClientes.ViewHolder holder, int position) {
         // Colocar los datos del json a cada elemento o vista
         try {
-            String nombres=jsonArray.getJSONObject(position).getString("Nombres")+jsonArray.getJSONObject(position).getString("Apellidos");
+            String nombres=jsonArray.getJSONObject(position).getString("Nombres")+" "+jsonArray.getJSONObject(position).getString("Apellidos");
             holder.tvNombre.setText(nombres);
             holder.tvCedula.setText(jsonArray.getJSONObject(position).getString("Cedula"));
             holder.tvDire.setText(jsonArray.getJSONObject(position).getString("Direccion"));
             holder.tvCumple.setText(jsonArray.getJSONObject(position).getString("Cumple"));
             holder.tvSexo.setText(jsonArray.getJSONObject(position).getString("Sexo"));
+
+            // creo las opciones de modificar y eliminar cliente
+            //holder.btnModificar.
 
         } catch (JSONException e) {
             // Error porque no se pudo obtener el Json
@@ -55,6 +59,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Atributos
+        Button btnModificar, btnEliminar;
         TextView tvNombre,tvDire,tvCedula,tvCumple,tvSexo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +69,8 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
             tvCedula=itemView.findViewById(R.id.tvCedula);
             tvCumple=itemView.findViewById(R.id.tvCumple);
             tvSexo=itemView.findViewById(R.id.tvSexo);
+            btnModificar=itemView.findViewById(R.id.btnModificar);
+            btnEliminar=itemView.findViewById(R.id.btnEliminar);
 
         }
     }
