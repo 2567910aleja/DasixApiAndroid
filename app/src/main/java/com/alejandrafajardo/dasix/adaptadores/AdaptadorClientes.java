@@ -42,8 +42,21 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
             holder.tvCumple.setText(jsonArray.getJSONObject(position).getString("Cumple"));
             holder.tvSexo.setText(jsonArray.getJSONObject(position).getString("Sexo"));
 
-            // creo las opciones de modificar y eliminar cliente
-            //holder.btnModificar.
+            // creo la opcion de modificar cliente
+            holder.btnModificar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            // creo la opcion de modificar cliente
+            holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
         } catch (JSONException e) {
             // Error porque no se pudo obtener el Json
